@@ -1,0 +1,12 @@
+tt.*
+.tests
+doc/tags
+debug
+.repro
+foo.*
+*.log
+data
+.repro.lua
+lazy-lock.json
+/.lazy.lua
+/lua/config/local.lua
