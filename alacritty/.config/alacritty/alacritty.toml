@@ -30,42 +30,42 @@ style = { shape = "Block", blinking = "On" }
 blink_interval = 600
 unfocused_hollow = true
 
-# Tokyo Night theme
+# One Dark theme
 [colors.primary]
-background = "#1a1b26"
-foreground = "#c0caf5"
+background = "#282c34"
+foreground = "#abb2bf"
 
 [colors.normal]
-black   = "#15161e"
-red     = "#f7768e"
-green   = "#9ece6a"
-yellow  = "#e0af68"
-blue    = "#7aa2f7"
-magenta = "#bb9af7"
-cyan    = "#7dcfff"
-white   = "#a9b1d6"
+black   = "#282c34"
+red     = "#e06c75"
+green   = "#98c379"
+yellow  = "#e5c07b"
+blue    = "#61afef"
+magenta = "#c678dd"
+cyan    = "#56b6c2"
+white   = "#abb2bf"
 
 [colors.bright]
-black   = "#414868"
-red     = "#f7768e"
-green   = "#9ece6a"
-yellow  = "#e0af68"
-blue    = "#7aa2f7"
-magenta = "#bb9af7"
-cyan    = "#7dcfff"
-white   = "#c0caf5"
+black   = "#3f4451"
+red     = "#ff616e"
+green   = "#a5e075"
+yellow  = "#e5c07b"
+blue    = "#4dc4ff"
+magenta = "#de73ff"
+cyan    = "#4cd1e0"
+white   = "#ffffff"
 
 [colors.selection]
-background = "#283457"
+background = "#3e4451"
 text       = "CellForeground"
 
 [colors.search.matches]
-background = "#3d59a1"
-foreground = "#c0caf5"
+background = "#3e4451"
+foreground = "#abb2bf"
 
 [colors.search.focused_match]
-background = "#e0af68"
-foreground = "#1a1b26"
+background = "#e5c07b"
+foreground = "#282c34"
 
 [bell]
 duration = 0
