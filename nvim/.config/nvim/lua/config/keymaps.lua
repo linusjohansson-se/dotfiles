@@ -6,9 +6,9 @@
 local map = vim.keymap.set
 
 -- Navigation
-map("n", "<F12>", vim.lsp.buf.definition, { desc = "Go to Definition (F12)" })
-map("n", "<S-F12>", vim.lsp.buf.references, { desc = "Find References (Shift+F12)" })
-map("n", "gi", vim.lsp.buf.implementation, { desc = "Go to Implementation (gi)" })
+map("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition (F12)" })
+map("n", "gr", vim.lsp.buf.references, { desc = "Find References (Shift+F12)" })
+map("n", "gi", vim.lsp.buf.implementation, { desc = "Go to Implementation (Ctrl+F12)" })
 
 -- Refactoring & Actions
 map("n", "<F2>", vim.lsp.buf.rename, { desc = "Rename (F2)" })
