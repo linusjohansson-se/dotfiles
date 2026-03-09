@@ -16,8 +16,15 @@ return {
         },
         terminal = function(path, action, args)
           -- This opens a terminal in a vertical split for run/test/build
+          local commands = {
+            run     = string.format("dotnet run --project %s %s", path, args or ""),
+            test    = string.format("dotnet test %s %s", path, args or ""),
+            restore = string.format("dotnet restore %s %s", path, args or ""),
+            build   = string.format("dotnet build %s %s", path, args or ""),
+            watch   = string.format("dotnet watch --project %s %s", path, args or ""),
+          }
           vim.cmd("vsplit")
-          vim.cmd("term dotnet " .. action .. " " .. path .. " " .. (args or ""))
+          vim.cmd("term " .. (commands[action] or ("dotnet " .. action .. " " .. path)))
         end,
       })
 
@@ -31,7 +38,7 @@ return {
         end
       end, { desc = "Toggle C# Solution View" })
       vim.keymap.set("n", "<leader>dr", function()
-        dotnet.run_project()
+        dotnet.run()
       end, { desc = "Dotnet Run" })
       vim.keymap.set("n", "<leader>dt", function()
         dotnet.test_solution()
