@@ -12,7 +12,7 @@ return {
         -- This will automatically use Roslyn and netcoredbg
         lsp = {
           enabled = true,
-          preload_roslyn = false,
+          preload_roslyn = true,
           on_attach = function(_, bufnr)
             vim.api.nvim_create_autocmd("BufWritePost", {
               buffer = bufnr,
