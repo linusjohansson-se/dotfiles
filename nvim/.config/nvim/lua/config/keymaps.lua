@@ -9,6 +9,10 @@ map("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" })
 map("n", "gr", vim.lsp.buf.references, { desc = "Find References" })
 map("n", "gi", vim.lsp.buf.implementation, { desc = "Go to Implementation" })
 
+-- Diagnostics
+map("n", "<leader>dn", function() vim.diagnostic.goto_next() end, { desc = "Next Diagnostic" })
+map("n", "<leader>dp", function() vim.diagnostic.goto_prev() end, { desc = "Prev Diagnostic" })
+
 -- Refactoring & Actions
 map("n", "<F2>", vim.lsp.buf.rename, { desc = "Rename Symbol" })
 map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })

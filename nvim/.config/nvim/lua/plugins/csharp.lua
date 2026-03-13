@@ -12,7 +12,18 @@ return {
         -- This will automatically use Roslyn and netcoredbg
         lsp = {
           enabled = true,
-          preload_roslyn = true,
+          preload_roslyn = false,
+          on_attach = function(_, bufnr)
+            vim.api.nvim_create_autocmd("BufWritePost", {
+              buffer = bufnr,
+              callback = function()
+                vim.diagnostic.reset(nil, bufnr)
+                vim.lsp.buf_request(bufnr, "textDocument/diagnostic", {
+                  textDocument = vim.lsp.util.make_text_document_params(bufnr),
+                })
+              end,
+            })
+          end,
         },
         terminal = function(path, action, args)
           -- This opens a terminal in a vertical split for run/test/build
@@ -29,6 +40,13 @@ return {
       })
 
       -- Keymaps for the terminal warrior
+      vim.keymap.set("n", "<leader>cR", function()
+        vim.lsp.stop_client(vim.lsp.get_clients({ name = "roslyn" }))
+        vim.defer_fn(function()
+          vim.cmd("edit")
+        end, 500)
+      end, { desc = "Restart Roslyn LSP" })
+
       vim.keymap.set("n", "<leader>cs", function()
         local view = require("easy-dotnet.ui-modules.project-view")
         if view.is_open() then
