@@ -31,42 +31,42 @@ style = { shape = "Block", blinking = "On" }
 blink_interval = 600
 unfocused_hollow = true
 
-# One Dark theme
+# Carbonfox theme
 [colors.primary]
-background = "#282c34"
-foreground = "#abb2bf"
+background = "#161616"
+foreground = "#f2f4f8"
 
 [colors.normal]
-black   = "#282c34"
-red     = "#e06c75"
-green   = "#98c379"
-yellow  = "#e5c07b"
-blue    = "#61afef"
-magenta = "#c678dd"
-cyan    = "#56b6c2"
-white   = "#abb2bf"
+black   = "#282828"
+red     = "#ee5396"
+green   = "#25be6a"
+yellow  = "#08bdba"
+blue    = "#78a9ff"
+magenta = "#be95ff"
+cyan    = "#33b1ff"
+white   = "#dde1e6"
 
 [colors.bright]
-black   = "#3f4451"
-red     = "#ff616e"
-green   = "#a5e075"
-yellow  = "#e5c07b"
-blue    = "#4dc4ff"
-magenta = "#de73ff"
-cyan    = "#4cd1e0"
+black   = "#484848"
+red     = "#f16da6"
+green   = "#46c880"
+yellow  = "#2fc5c2"
+blue    = "#8cb6ff"
+magenta = "#c8a8ff"
+cyan    = "#52bdff"
 white   = "#ffffff"
 
 [colors.selection]
-background = "#3e4451"
+background = "#2a2a2a"
 text       = "CellForeground"
 
 [colors.search.matches]
-background = "#3e4451"
-foreground = "#abb2bf"
+background = "#2a2a2a"
+foreground = "#f2f4f8"
 
 [colors.search.focused_match]
-background = "#e5c07b"
-foreground = "#282c34"
+background = "#78a9ff"
+foreground = "#161616"
 
 [bell]
 duration = 0
