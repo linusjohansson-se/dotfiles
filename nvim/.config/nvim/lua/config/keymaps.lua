@@ -30,6 +30,10 @@ if vim.g.vscode then
   -- File Tree
   map("n", "<leader>e", function() vscode.action("workbench.action.toggleSidebarVisibility") end, { desc = "Toggle File Tree" })
 
+  -- AI
+  map("n", "<leader>ac", function() vscode.action("claude.openInTerminal") end, { desc = "Claude Code" })
+  map("n", "<leader>ao", function() vscode.action("opencode.open") end, { desc = "OpenCode" })
+
   -- Collapse all panes
   map("n", "<Esc>", function()
     vscode.action("workbench.action.closeSidebar")
