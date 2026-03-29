@@ -31,8 +31,14 @@ if vim.g.vscode then
   map("n", "<leader>e", function() vscode.action("workbench.action.toggleSidebarVisibility") end, { desc = "Toggle File Tree" })
 
   -- AI
-  map("n", "<leader>ac", function() vscode.action("claude.openInTerminal") end, { desc = "Claude Code" })
-  map("n", "<leader>ao", function() vscode.action("opencode.open") end, { desc = "OpenCode" })
+  map("n", "<leader>ac", function()
+    vscode.action("workbench.action.createTerminalEditorSide")
+    vim.defer_fn(function() vscode.action("workbench.action.terminal.sendSequence", { args = { text = "claude\n" } }) end, 500)
+  end, { desc = "Claude Code" })
+  map("n", "<leader>ao", function()
+    vscode.action("workbench.action.createTerminalEditorSide")
+    vim.defer_fn(function() vscode.action("workbench.action.terminal.sendSequence", { args = { text = "opencode\n" } }) end, 500)
+  end, { desc = "OpenCode" })
 
   -- Collapse all panes
   map("n", "<Esc>", function()
