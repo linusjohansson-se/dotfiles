@@ -30,19 +30,15 @@ if vim.g.vscode then
   -- File Tree
   map("n", "<leader>e", function() vscode.action("workbench.action.toggleSidebarVisibility") end, { desc = "Toggle File Tree" })
 
+  -- Window navigation
+  map("n", "<C-S-h>", function() vscode.action("workbench.action.focusLeftGroup") end, { desc = "Focus Left" })
+  map("n", "<C-S-j>", function() vscode.action("workbench.action.focusBelowGroup") end, { desc = "Focus Below" })
+  map("n", "<C-S-k>", function() vscode.action("workbench.action.focusAboveGroup") end, { desc = "Focus Above" })
+  map("n", "<C-S-l>", function() vscode.action("workbench.action.focusRightGroup") end, { desc = "Focus Right" })
+
   -- AI
-  map("n", "<leader>ac", function()
-    vscode.action("workbench.action.terminal.new")
-    vim.defer_fn(function()
-      vscode.action("workbench.action.terminal.sendSequence", { args = { { text = "claude\n" } } })
-    end, 1000)
-  end, { desc = "Claude Code" })
-  map("n", "<leader>ao", function()
-    vscode.action("workbench.action.terminal.new")
-    vim.defer_fn(function()
-      vscode.action("workbench.action.terminal.sendSequence", { args = { { text = "opencode\n" } } })
-    end, 1000)
-  end, { desc = "OpenCode" })
+  map("n", "<leader>ac", function() vscode.action("claude-vscode.terminal.open") end, { desc = "Claude Code" })
+  map("n", "<leader>ao", function() vscode.action("opencode.openTerminal") end, { desc = "OpenCode" })
 
   -- Collapse all panes
   map("n", "<Esc>", function()
