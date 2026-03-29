@@ -4,18 +4,58 @@
 
 local map = vim.keymap.set
 
--- Navigation
-map("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" })
-map("n", "gr", vim.lsp.buf.references, { desc = "Find References" })
-map("n", "gi", vim.lsp.buf.implementation, { desc = "Go to Implementation" })
+if vim.g.vscode then
+  local vscode = require("vscode")
 
--- Diagnostics
-map("n", "<leader>dn", function() vim.diagnostic.goto_next() end, { desc = "Next Diagnostic" })
-map("n", "<leader>dp", function() vim.diagnostic.goto_prev() end, { desc = "Prev Diagnostic" })
+  -- Navigation
+  map("n", "gd", function() vscode.action("editor.action.revealDefinition") end, { desc = "Go to Definition" })
+  map("n", "gr", function() vscode.action("editor.action.goToReferences") end, { desc = "Find References" })
+  map("n", "gi", function() vscode.action("editor.action.goToImplementation") end, { desc = "Go to Implementation" })
 
--- Refactoring & Actions
-map("n", "<F2>", vim.lsp.buf.rename, { desc = "Rename Symbol" })
-map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
+  -- Diagnostics
+  map("n", "<leader>dn", function() vscode.action("editor.action.marker.next") end, { desc = "Next Diagnostic" })
+  map("n", "<leader>dp", function() vscode.action("editor.action.marker.prev") end, { desc = "Prev Diagnostic" })
+
+  -- Refactoring & Actions
+  map("n", "<F2>", function() vscode.action("editor.action.rename") end, { desc = "Rename Symbol" })
+  map("n", "<leader>ca", function() vscode.action("editor.action.quickFix") end, { desc = "Code Action" })
+  map("n", "<leader>cd", function() vscode.action("editor.action.showHover") end, { desc = "Line Diagnostics" })
+
+  -- UI Toggles
+  map("n", "<leader>ut", function() vscode.action("editor.action.inlayHints.toggleInlayHintsForFile") end, { desc = "Toggle Inlay Hints" })
+
+  -- Search
+  map("n", "<leader>/", function() vscode.action("workbench.action.findInFiles") end, { desc = "Global Search" })
+else
+  -- Navigation
+  map("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" })
+  map("n", "gr", vim.lsp.buf.references, { desc = "Find References" })
+  map("n", "gi", vim.lsp.buf.implementation, { desc = "Go to Implementation" })
+
+  -- UI Toggles
+  map("n", "<leader>ut", function()
+    local enabled = vim.lsp.inlay_hint.is_enabled()
+    vim.lsp.inlay_hint.enable(not enabled)
+  end, { desc = "Toggle Inlay Hints" })
+
+  local types_dimmed = false
+  map("n", "<leader>uT", function()
+    types_dimmed = not types_dimmed
+    local hl = types_dimmed and { fg = "#3a3a3a" } or {}
+    vim.api.nvim_set_hl(0, "@type", hl)
+    vim.api.nvim_set_hl(0, "@type.builtin", hl)
+    vim.api.nvim_set_hl(0, "@type.qualifier", hl)
+  end, { desc = "Toggle Type Annotation Visibility" })
+
+  -- Diagnostics
+  map("n", "<leader>dn", function() vim.diagnostic.goto_next() end, { desc = "Next Diagnostic" })
+  map("n", "<leader>dp", function() vim.diagnostic.goto_prev() end, { desc = "Prev Diagnostic" })
+
+  -- Refactoring & Actions
+  map("n", "<F2>", vim.lsp.buf.rename, { desc = "Rename Symbol" })
+  map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
+  map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
+end
 
 -- Debugging
 map("n", "<F5>", function()

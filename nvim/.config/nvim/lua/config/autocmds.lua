@@ -21,6 +21,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
+-- 2-space indent for web filetypes
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "javascript", "javascriptreact", "typescript", "typescriptreact", "json", "html", "css", "scss" },
+  callback = function()
+    vim.opt_local.tabstop = 2
+    vim.opt_local.shiftwidth = 2
+  end,
+})
+
 -- Reload files changed outside of Neovim
 vim.o.autoread = true
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
