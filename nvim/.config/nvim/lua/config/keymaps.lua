@@ -26,6 +26,16 @@ if vim.g.vscode then
 
   -- Search
   map("n", "<leader>/", function() vscode.action("workbench.action.findInFiles") end, { desc = "Global Search" })
+
+  -- File Tree
+  map("n", "<leader>e", function() vscode.action("workbench.action.toggleSidebarVisibility") end, { desc = "Toggle File Tree" })
+
+  -- Collapse all panes
+  map("n", "<Esc>", function()
+    vscode.action("workbench.action.closeSidebar")
+    vscode.action("workbench.action.closePanel")
+    vscode.action("workbench.action.closeAuxiliaryBar")
+  end, { desc = "Collapse all panes" })
 else
   -- Navigation
   map("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" })
