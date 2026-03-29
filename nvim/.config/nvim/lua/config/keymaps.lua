@@ -32,12 +32,16 @@ if vim.g.vscode then
 
   -- AI
   map("n", "<leader>ac", function()
-    vscode.action("workbench.action.createTerminalEditorSide")
-    vim.defer_fn(function() vscode.action("workbench.action.terminal.sendSequence", { args = { text = "claude\n" } }) end, 500)
+    vscode.action("workbench.action.terminal.new")
+    vim.defer_fn(function()
+      vscode.action("workbench.action.terminal.sendSequence", { args = { { text = "claude\n" } } })
+    end, 1000)
   end, { desc = "Claude Code" })
   map("n", "<leader>ao", function()
-    vscode.action("workbench.action.createTerminalEditorSide")
-    vim.defer_fn(function() vscode.action("workbench.action.terminal.sendSequence", { args = { text = "opencode\n" } }) end, 500)
+    vscode.action("workbench.action.terminal.new")
+    vim.defer_fn(function()
+      vscode.action("workbench.action.terminal.sendSequence", { args = { { text = "opencode\n" } } })
+    end, 1000)
   end, { desc = "OpenCode" })
 
   -- Collapse all panes
