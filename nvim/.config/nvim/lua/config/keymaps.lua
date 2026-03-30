@@ -43,11 +43,12 @@ if vim.g.vscode then
   map("n", "<leader>ao", function() vscode.action("workbench.action.togglePanel") end, { desc = "Toggle OpenCode" })
 
   -- Collapse all panes
-  map("n", "<Esc>", function()
+  map("n", "<leader>q", function()
     vscode.action("workbench.action.closeSidebar")
     vscode.action("workbench.action.closePanel")
     vscode.action("workbench.action.closeAuxiliaryBar")
-  end, { desc = "Collapse all panes" })
+  end, { desc = "Close all panels" })
+
 else
   -- Navigation
   map("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" })
@@ -77,27 +78,13 @@ else
   map("n", "<F2>", vim.lsp.buf.rename, { desc = "Rename Symbol" })
   map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
   map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
-end
 
--- Debugging
-map("n", "<F5>", function()
-  require("dap").continue()
-end, { desc = "Debug: Continue" })
-map("n", "<F9>", function()
-  require("dap").toggle_breakpoint()
-end, { desc = "Debug: Toggle Breakpoint" })
-map("n", "<F10>", function()
-  require("dap").step_over()
-end, { desc = "Debug: Step Over" })
-map("n", "<F11>", function()
-  require("dap").step_into()
-end, { desc = "Debug: Step Into" })
-map("n", "<S-F11>", function()
-  require("dap").step_out()
-end, { desc = "Debug: Step Out" })
-map("n", "<S-F5>", function()
-  require("dap").terminate()
-end, { desc = "Stop Debugging (Shift+F5)" })
-map("n", "<F7>", function()
-  require("dapui").toggle()
-end, { desc = "Toggle Debug UI (F7)" })
+  -- Debugging
+  map("n", "<F5>", function() require("dap").continue() end, { desc = "Debug: Continue" })
+  map("n", "<F9>", function() require("dap").toggle_breakpoint() end, { desc = "Debug: Toggle Breakpoint" })
+  map("n", "<F10>", function() require("dap").step_over() end, { desc = "Debug: Step Over" })
+  map("n", "<F11>", function() require("dap").step_into() end, { desc = "Debug: Step Into" })
+  map("n", "<S-F11>", function() require("dap").step_out() end, { desc = "Debug: Step Out" })
+  map("n", "<S-F5>", function() require("dap").terminate() end, { desc = "Stop Debugging (Shift+F5)" })
+  map("n", "<F7>", function() require("dapui").toggle() end, { desc = "Toggle Debug UI (F7)" })
+end

@@ -20,6 +20,12 @@ local spec = vim.g.vscode and {} or {
   { import = "plugins" },
 }
 
+if vim.g.vscode then
+  require("config.options")
+  require("config.keymaps")
+  return
+end
+
 require("lazy").setup({
   spec = spec,
   defaults = {
